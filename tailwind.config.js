@@ -9,20 +9,22 @@ module.exports = {
           green: {
             DEFAULT: "#218225",
             light: "#3BA440",
-            lighter: "#E8FFE9"
+            lighter: "#E8FFE9",
+            drawer: "#E4FFE5"
           },
           yellow: {
             DEFAULT: "#FEC844",
-            light: "#FFF5DD"
+            light: "#FFF0CD",
+            lighter: "#FFF5DD",
           },
           gray: {
             DEFAULT: "#2F2F2F",
+            light: "#F7F7F7",
             100: "#DDDDDD",
             200: "#C3C3C3",
             300: "#787878",
-            400: "#555555"
           },
-          inputBg: "#F3F3F3",
+          inputBg: "#F3F3F3"
         },
         fontFamily: {
           pblackitalics: ["PlayFair-BlackItalics", "sans-serif"],

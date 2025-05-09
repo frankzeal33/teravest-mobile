@@ -1,116 +1,150 @@
-import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
+import { DrawerItem } from "@react-navigation/drawer";
 import {
   Feather,
   AntDesign,
   MaterialIcons,
   Ionicons,
+  Entypo,
+  FontAwesome,
+  Fontisto,
+  Octicons,
+  FontAwesome5,
 } from "@expo/vector-icons";
 import { router, usePathname } from "expo-router";
-import { useEffect } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const CustomDrawerContent = (props: any) => {
 
   const {top, bottom} = useSafeAreaInsets()
     const pathname = usePathname();
-  
-    useEffect(() => {
-      console.log(pathname);
-    }, [pathname]);
+    
+    const openDrawer = () => {
+      props.navigation.toggleDrawer();
+    }
   
     return (
       <View className="flex-1">
-        <DrawerContentScrollView {...props} contentContainerStyle={{backgroundColor: 'green', flex: 1}} style={{paddingHorizontal: 0}}>
-          <View style={styles.userInfoWrapper}>
-            <Image
-              source={{ uri: "https://randomuser.me/api/portraits/women/26.jpg" }}
-              width={80}
-              height={80}
-              style={styles.userImg}
-            />
-            <View style={styles.userDetailsWrapper}>
-              <Text style={styles.userName}>John Doe</Text>
-              <Text style={styles.userEmail}>john@email.com</Text>
+        <ScrollView {...props} contentContainerStyle={{flexGrow: 1 }} showsVerticalScrollIndicator={false}>
+          <View className="bg-green-drawer px-6 h-52 relative" style={{ paddingTop: top + 15}}>
+            <TouchableOpacity onPress={openDrawer} className="ml-auto items-center justify-center size-10 rounded-full bg-white">
+              <Entypo name="chevron-small-left" size={32} color="#000000" />
+            </TouchableOpacity>
+            <View className='flex-row gap-3 items-start absolute -bottom-6 left-6'>
+              <View className='size-[80px] bg-green rounded-full items-center justify-center z-10'>
+                <Text className="text-white font-rblack text-4xl">OD</Text>
+              </View>
+              <View>
+                <Text className="text-lg font-rbold max-w-56" numberOfLines={1}>Oladapo Koiki</Text>
+                <Text className="text-sm font-rregular max-w-56" numberOfLines={1}>bjkoiki19@gmail.com</Text>
+              </View>
             </View>
           </View>
           
-          <View className="bg-white flex-1">
+          <View className="bg-white flex-1 px-2 pt-14 py-6">
             <DrawerItem
               icon={({ color, size }) => (
-                <MaterialIcons
-                  name="favorite-outline"
-                  size={size}
-                  color={pathname == "/favourites" ? "#fff" : "#000"}
-                />
+                <View className={`flex items-center justify-center size-12 rounded-full bg-green-drawer`}>
+                  <FontAwesome name="user" color={"#218225"} size={26}/>
+                </View>
               )}
-              label={"Favourites"}
+              label={"User Profile"}
               labelStyle={[
                 styles.navItemLabel,
-                { color: pathname == "/favourites" ? "#fff" : "#000" },
+                { fontFamily: pathname === "/home" ? "Raleway-Bold" : "Raleway-Regular" },
+                { color: pathname === "/home" ? "#218225" : "#000" },
               ]}
-              style={{ backgroundColor: pathname == "/favourites" ? "#333" : "#fff" }}
+              style={{borderBottomWidth: 1, borderBottomColor: "#ccc"}}
               onPress={() => {
-                router.push("/(drawer)/(tabs)/transactions");
+                router.push("/(drawer)/(routes)/UserProfile");
               }}
             />
             <DrawerItem
               icon={({ color, size }) => (
-                <Ionicons
-                  name="settings-outline"
-                  size={size}
-                  color={pathname == "/settings" ? "#fff" : "#000"}
-                />
+                <View className={`flex items-center justify-center size-12 rounded-full bg-green-drawer`}>
+                  <MaterialIcons name="print" color={"#218225"} size={26}/>
+                </View>
               )}
-              label={"Settings"}
+              label={"Withdrawal Account"}
               labelStyle={[
                 styles.navItemLabel,
-                { color: pathname == "/settings" ? "#fff" : "#000" },
+                { fontFamily: pathname === "/transactions" ? "Raleway-Bold" : "Raleway-Regular" },
+                { color: pathname === "/transactions" ? "#218225" : "#000" },
               ]}
-              style={{ backgroundColor: pathname == "/settings" ? "#333" : "#fff" }}
+              style={{borderBottomWidth: 1, borderBottomColor: "#ccc"}}
               onPress={() => {
-                router.push("/(drawer)/(tabs)/investments");
+                router.push("/(drawer)/(routes)/WithdrawalAccount");
+              }}
+            />
+            <DrawerItem
+              icon={({ color, size }) => (
+                <View className={`flex items-center justify-center size-12 rounded-full bg-green-drawer`}>
+                  <Fontisto name="locked" color={"#218225"} size={24}/>
+                </View>
+              )}
+              label={"Security"}
+              labelStyle={[
+                styles.navItemLabel,
+                { fontFamily: pathname === "/transactions" ? "Raleway-Bold" : "Raleway-Regular" },
+                { color: pathname === "/transactions" ? "#218225" : "#000" },
+              ]}
+              style={{borderBottomWidth: 1, borderBottomColor: "#ccc"}}
+              onPress={() => {
+                router.push("/(drawer)/(routes)/Secutity");
+              }}
+            />
+            <DrawerItem
+              icon={({ color, size }) => (
+                <View className={`flex items-center justify-center size-12 rounded-full bg-green-drawer`}>
+                  <Octicons name="bell-fill" color={"#218225"} size={24}/>
+                </View>
+              )}
+              label={"Notification"}
+              labelStyle={[
+                styles.navItemLabel,
+                { fontFamily: pathname === "/transactions" ? "Raleway-Bold" : "Raleway-Regular" },
+                { color: pathname === "/transactions" ? "#218225" : "#000" },
+              ]}
+              style={{borderBottomWidth: 1, borderBottomColor: "#ccc"}}
+              onPress={() => {
+                router.push("/(drawer)/(routes)/Notifications");
+              }}
+            />
+            <DrawerItem
+              icon={({ color, size }) => (
+                <View className={`flex items-center justify-center size-12 rounded-full bg-green-drawer`}>
+                  <FontAwesome5 name="headphones" color={"#218225"} size={24}/>
+                </View>
+              )}
+              label={"Support"}
+              labelStyle={[
+                styles.navItemLabel,
+                { fontFamily: pathname === "/transactions" ? "Raleway-Bold" : "Raleway-Regular" },
+                { color: pathname === "/transactions" ? "#218225" : "#000" },
+              ]}
+              onPress={() => {
+                router.push("/(drawer)/(routes)/Support");
               }}
             />
           </View>
-        </DrawerContentScrollView>
-        <View style={{marginBottom: bottom + 20}}>
-          <Text>Logout</Text>
+        </ScrollView>
+        <View style={{marginBottom: bottom + 10}} className="px-8 pt-4 flex-row gap-2 justify-between items-center opacity-50">
+          <TouchableOpacity onPress={() => router.replace('/(onboarding)/SignIn')} className="flex-row gap-3 justify-between items-center">
+            <View className={`flex items-center justify-center size-11 rounded-full bg-red-500`}>
+              <FontAwesome name="power-off" color={"#ffffff"} size={24}/>
+            </View>
+            <Text className="text-red-500 font-rmedium text-xl">Logout</Text>
+          </TouchableOpacity>
+          <Text className="text-lg">V.1</Text>
         </View>
       </View>
     );
   };
 
 export default CustomDrawerContent
-
   
 const styles = StyleSheet.create({
-    navItemLabel: {
-      fontSize: 18,
-    },
-    userInfoWrapper: {
-      flexDirection: "row",
-      paddingHorizontal: 10,
-      paddingVertical: 20,
-      borderBottomColor: "#ccc",
-      borderBottomWidth: 1,
-      marginBottom: 10,
-    },
-    userImg: {
-      borderRadius: 40,
-    },
-    userDetailsWrapper: {
-      marginTop: 25,
-      marginLeft: 10,
-    },
-    userName: {
-      fontSize: 16,
-      fontWeight: 'bold',
-    },
-    userEmail: {
-      fontSize:16,
-      fontStyle: 'italic',
-      textDecorationLine: 'underline',
-    }
-  });
-  
+  navItemLabel: {
+    fontSize: 16,
+  }
+})

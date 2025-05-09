@@ -16,14 +16,17 @@ type headerProps = {
 export default function Header({title, right, showGoBack, showRight, icon, onpress}: headerProps) {
   return (
     <View className='flex-row items-center justify-between mt-4 pb-4 gap-1'>
-        {showGoBack ? <TouchableOpacity onPress={onpress}><AntDesign name="leftcircle" size={30} color="#C3C3C3"/></TouchableOpacity>
-            : <Text/>
+        {showGoBack ? 
+          <TouchableOpacity onPress={onpress} className='size-9 items-center justify-center bg-gray-100 rounded-full'>
+            <AntDesign name="left" size={22} color="black"/>
+          </TouchableOpacity>
+          : <Text/>
         }
         <Text className="text-2xl text-green font-rmedium">{title}</Text>
         {showRight ? (
           icon
         ) : (
-          <View className='w-7'/>
+          <View className='w-8'/>
         )}
     </View>
   )

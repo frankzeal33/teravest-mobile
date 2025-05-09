@@ -11,7 +11,7 @@ const index = () => {
   return (
     <SafeAreaView className='flex-1 bg-white'>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <View className="flex-1 items-center justify-between pt-5 pb-8">
+        <View className="flex-1 items-center pt-5">
           <View className="items-center px-4">
             <Image
               source={images.logo}
@@ -19,32 +19,31 @@ const index = () => {
             />
           </View>
 
-          <View className='w-full'>
-            <View className="items-center mt-10 px-4">
+          <View className='w-full my-auto'>
+            <View className="items-center mt-8 px-4">
               <Text className="text-5xl font-black">
                 <Text className="text-green-light font-pblackitalics">Invest</Text>
                 <Text> in</Text>
               </Text>
               <Animated.Text entering={FadeInLeft.duration(600).delay(200).springify()} className="text-5xl font-black">what you eat</Animated.Text>
-              <Animated.Text entering={FadeInRight.duration(500).delay(600).springify()}  className="text-base mt-1 text-center font-rmedium">
+              <Animated.Text entering={FadeInLeft.duration(500).delay(600).springify()}  className="text-base mt-1 text-center font-rmedium">
                 Earn 2.3% profit monthly on investment.
               </Animated.Text>
             </View>
 
             <Image
               source={images.onBoarding}
-              className="w-full my-8"
+              className="w-full mt-8 mb-4"
               resizeMode="cover"
             />
           </View>
-
-          {/* Buttons */}
-          <View className="flex-row items-center justify-between w-full px-4 gap-1">
-            <CustomButton title="Sign Up" handlePress={() => router.push('/(onboarding)/SignUp')} containerStyles="w-[47%]" bgColor='bg-white border border-green' textStyles='text-green'/>
-            <CustomButton title="Log In" handlePress={() => router.push('/(onboarding)/SignIn')} containerStyles="w-[47%]" textStyles='text-white'/>
-          </View>
+          
         </View>
       </ScrollView>
+      <View className="flex-row items-center justify-between w-full px-4 my-4 gap-1">
+        <CustomButton title="Sign Up" handlePress={() => router.push('/(onboarding)/SignUp')} containerStyles="w-[47%]" bgColor='bg-white border border-green' textStyles='text-green'/>
+        <CustomButton title="Log In" handlePress={() => router.push('/(onboarding)/SignIn')} containerStyles="w-[47%]" textStyles='text-white'/>
+      </View>
 
       <StatusBar backgroundColor='#ffffff' style="dark"/>
     </SafeAreaView>

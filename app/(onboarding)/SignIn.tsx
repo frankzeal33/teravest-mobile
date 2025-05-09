@@ -25,6 +25,8 @@ const SignIn = () => {
 
   const submit = async () => {
 
+    router.replace("/(drawer)/(tabs)/home")
+    
     // if(!form.firstname){
     //     return toast.show("Firstname is empty", {
     //       type: "warning",
@@ -124,7 +126,7 @@ const SignIn = () => {
             <FormField title="Email Address" value={form.email} placeholder="Enter here" handleChangeText={(e: any) => setForm({ ...form, email: e })} otherStyles="mt-7" keyboardType="email-address"/>
             <FormField title="Password" value={form.password} placeholder="Enter here" handleChangeText={(e: any) => setForm({ ...form, password: e })} otherStyles="mt-4"/>
             <View className="justify-end pt-3 flex-row gap-1">
-              <TouchableOpacity><Text className='text-base text-green font-rmedium'>Forgot Password?</Text></TouchableOpacity>
+              <TouchableOpacity onPress={() => router.push("/(onboarding)/ResetPassword")}><Text className='text-base text-green font-rmedium'>Forgot Password?</Text></TouchableOpacity>
             </View>
           </View>
       </ScrollView>

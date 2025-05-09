@@ -173,7 +173,7 @@ const SetPin = () => {
     <Modals showModal={modalVisible}>
       <View>
         <TouchableOpacity className='flex-row justify-end' onPress={() => setModalVisible(!modalVisible)}>
-            <AntDesign name="closecircle" size={30} color="#C3C3C3" />
+            <AntDesign name="closecircle" size={32} color="#C3C3C3" />
         </TouchableOpacity>
 
         <LottieView
@@ -187,7 +187,7 @@ const SetPin = () => {
           source={images.Animatedcheck}
         />
 
-        <Text className="text-3xl text-center text-green font-rbold">Success!</Text>
+        <Text className="text-3xl text-center text-green -mt-4 font-rbold">Success!</Text>
         <Text className="text-base text-center mt-1 font-rlight mb-6">You have created a PIN</Text>
       </View>
     </Modals>

@@ -8,6 +8,7 @@ import "../global.css";
 import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { StyleSheet } from 'react-native';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -38,13 +39,15 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView style={styles.container}>
-      <Stack  screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index"/>
-        <Stack.Screen name="Splash"/>
-        <Stack.Screen name="(onboarding)"/>
-        <Stack.Screen name="(tabs)"/>
-        <Stack.Screen name="(routes)"/>
-      </Stack>
+      <BottomSheetModalProvider>
+        <Stack  screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="index"/>
+          <Stack.Screen name="Splash"/>
+          <Stack.Screen name="(onboarding)"/>
+          <Stack.Screen name="(tabs)"/>
+          <Stack.Screen name="(routes)"/>
+        </Stack>
+      </BottomSheetModalProvider>
       <StatusBar style="auto" />
     </GestureHandlerRootView>
   );
