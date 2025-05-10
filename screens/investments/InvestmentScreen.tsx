@@ -15,10 +15,16 @@ const InvestmentScreen = () => {
     const [index, setIndex] = useState(0);
 
   
-    const renderScene = SceneMap({
-        first: MyInvestments,
-        second: AllInvestment
-    });
+    const renderScene = ({ route }: any) => {
+      switch (route.key) {
+        case 'first':
+          return <MyInvestments goToAllInvestments={() => setIndex(1)} />;
+        case 'second':
+          return <AllInvestment />;
+        default:
+          return null;
+      }
+    };
   
     const routes = [
         { key: 'first', title: 'My Investments' },
@@ -55,7 +61,7 @@ const InvestmentScreen = () => {
   return (
     <SafeAreaView className="bg-white h-full">
         <View className='px-4'>
-            <Header title='Investments' showGoBack={true} onpress={() => router.back()}/>
+            <Header title='Investments' showGoBack={true} onpress={() => router.push("/(drawer)/(tabs)/home")}/>
         </View>
         <TabView
             navigationState={{ index, routes }}

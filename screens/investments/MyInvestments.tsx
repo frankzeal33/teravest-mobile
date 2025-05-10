@@ -6,6 +6,7 @@ import { Octicons } from '@expo/vector-icons'
 import CustomButton from '@/components/CustomButton'
 import { images } from '@/constants'
 import MyInvestmentCard from '@/components/MyInvestmentCard'
+import { router } from 'expo-router'
 
 const notifications: any = [
     {
@@ -18,7 +19,10 @@ const notifications: any = [
         duration: "5 months",
         currentInvestors: "250",
         minimumInvestmentAmount: "100000000",
-        status: "ACTIVE"
+        status: "ACTIVE",
+        investmentAmount: "30000",
+        startDate: "2025-05-09T14:30:00Z",
+        endDate: "2026-05-09T14:30:00Z"
 
     },
     {
@@ -31,49 +35,23 @@ const notifications: any = [
         duration: "5 months",
         currentInvestors: "250",
         minimumInvestmentAmount: "500000",
-        status: "IN ACTIVE"
-
+        status: "IN ACTIVE",
+        investmentAmount: "60000",
+        startDate: "2025-05-09T14:30:00Z",
+        endDate: "2026-05-09T14:30:00Z"
     }
 ]
   
 
-const MyInvestments = () => {
+const MyInvestments = ({ goToAllInvestments }: { goToAllInvestments: () => void }) => {
     
     const [loading, setLoading] = useState(false)
 
-    const click = async (item: any) => {
-
-        // setModalMessage(item)
-        // handlePresentModalPress()
-
-        // if(!item?.isRead){
-        //   try {
-  
-        //     const token = await SecureStore.getItemAsync("accessToken")
-        //     const result = await axiosClient.patch(`/notifications/${item?.id}/read`, {
-        //       headers: {
-        //         Authorization: `Bearer ${token}`
-        //       }
-        //     })
-  
-        //     console.log("read=",result.data.data.results)
-    
-    
-        //   } catch (error: any) {
-        //     toast.show(error.response.data.message || error.response.data.error.message,{
-        //       type: "danger",
-        //     });
-        //   }
-        // }
-        
-    }
-
-    const addInvestment = () => {
-
-    }
-
     const renderInvestment = ({item, index}: {item: any, index: number}) => (
-        <MyInvestmentCard item={item} index={index} handlePress={() => click(item)}/>
+        <MyInvestmentCard item={item} index={index} handlePress={() => router.push({
+            pathname: "/(drawer)/(routes)/InvestmentDetails",
+            params: { investmentData: JSON.stringify(item) }
+        })}/>
     )
 
   return (
@@ -107,10 +85,9 @@ const MyInvestments = () => {
                                 )}
                             />
                             <View className='w-full'>
-                                <CustomButton title='Add Investment' containerStyles='my-6' textStyles='text-white' handlePress={addInvestment}/>
+                                <CustomButton title='Add Investment' containerStyles='my-6' textStyles='text-white' handlePress={goToAllInvestments}/>
                             </View>
-                        </View>
-                        
+                        </View> 
                     )
                 }
             </View>    

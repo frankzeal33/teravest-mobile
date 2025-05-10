@@ -55,7 +55,7 @@ const UserProfileScreen = () => {
   return (
     <SafeAreaView className="bg-white h-full">
         <View className='px-4'>
-            <Header title='User Profile' showGoBack={true} onpress={() => router.back()}/>
+            <Header title='User Profile' showGoBack={true} onpress={() => router.push("/(drawer)/(tabs)/home")}/>
         </View>
         <TabView
             navigationState={{ index, routes }}

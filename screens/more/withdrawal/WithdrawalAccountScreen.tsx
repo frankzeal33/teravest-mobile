@@ -266,19 +266,19 @@ const handleDelete = (id: string) => {
                 <AntDesign name="closecircle" size={32} color="#C3C3C3" />
             </TouchableOpacity>
     
-            <LottieView
-                autoPlay
-                loop={false}
-                style={{
-                width: 150,
-                height: 150,
-                alignSelf: 'center'
-                }}
-                source={images.Animatedcheck}
-            />
+                <LottieView
+                    autoPlay
+                    loop={false}
+                    style={{
+                    width: 150,
+                    height: 150,
+                    alignSelf: 'center'
+                    }}
+                    source={images.Animatedcheck}
+                />
     
-            <Text className="text-3xl text-center text-green -mt-4 font-rbold">Withdrawal account set up successfully!</Text>
-            <Text className="text-base text-center mt-1 font-rlight mb-6">You can now make withdrawals</Text>
+                <Text className="text-3xl text-center text-green -mt-4 font-rbold">Withdrawal account set up successfully!</Text>
+                <Text className="text-base text-center mt-1 font-rlight mb-6">You can now make withdrawals</Text>
             </View>
         </Modals>
 

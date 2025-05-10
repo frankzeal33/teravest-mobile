@@ -15,6 +15,7 @@ import Invest3 from "../assets/images/invest-3.jpg";
 import Invest4 from "../assets/images/invest-4.jpg";
 import saveHaven from "../assets/images/safe-haven.png";
 import nomba from "../assets/images/nomba.png";
+import money from "../assets/images/money.png";
 
 export default {
   splash,
@@ -33,5 +34,6 @@ export default {
   Invest3,
   Invest4,
   saveHaven,
-  nomba
+  nomba,
+  money
 };

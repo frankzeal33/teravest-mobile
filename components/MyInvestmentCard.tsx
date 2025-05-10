@@ -15,6 +15,7 @@ const MyInvestmentCard = ({item, handlePress, index}: {item: any; handlePress: (
             </View>
         </View>
 
+        <Text className="text-sm font-rmedium text-gray-300" numberOfLines={1}>{item.duration}</Text>
         <Text className="text-lg font-rbold text-green" numberOfLines={1}>{item.title}</Text>
         <Text className="text-sm font-rmedium text-gray-300 mb-2" numberOfLines={1}>{item.description}</Text>
 

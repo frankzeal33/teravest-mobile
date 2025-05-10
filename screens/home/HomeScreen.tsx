@@ -8,35 +8,18 @@ import Octicons from '@expo/vector-icons/Octicons';
 import { DrawerActions, useFocusEffect, useNavigation } from '@react-navigation/native'
 import SelectDropdown from 'react-native-select-dropdown'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { Feather, FontAwesome, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign, Feather, FontAwesome, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import displayCurrency from '@/utils/displayCurrency'
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { images } from '@/constants';
+import { data, images } from '@/constants';
 import CustomButton from '@/components/CustomButton';
 import Transactions from '@/components/Transactions';
-
-const investmentType = [
-  {title: 'Basic'},
-  {title: 'Mega'},
-  {title: 'Premium'}
-];
-
-const cycleType = [
-  { title: 'Weekly' },
-  { title: '2 Weeks' },    
-  { title: 'Monthly' },
-  { title: '3 Months' },     
-  { title: '6 Months' },   
-  { title: '1 Year' },        
-  { title: '2 Years' },       
-  { title: '3 Years' },     
-  { title: 'Lifetime' }
-];
 
 const transactions: any = [
   {
     details: {
+      id: "1",
       name: "ojiego franklin",
       accountNumber: "4950569504",
       amount: "50000",
@@ -47,6 +30,7 @@ const transactions: any = [
   },
   {
     details: {
+      id: "2",
       name: "ojiego franklin",
       accountNumber: "4950569504",
       amount: "50000",
@@ -57,6 +41,7 @@ const transactions: any = [
   },
   {
     details: {
+      id: "3",
       name: "ojiego franklin",
       accountNumber: "4950569504",
       amount: "50000",
@@ -73,6 +58,7 @@ const HomeScreen = () => {
   const {top, bottom} = useSafeAreaInsets()
   const [hideStatus,setHideStatus] = useState<any>("false")
   const [loading, setLoading] = useState(false)
+  const [hideMatureMessage, setHideMatureMessage] = useState(true)
 
   const openDrawer = () => {
     navigation.dispatch(DrawerActions.toggleDrawer());
@@ -130,9 +116,30 @@ const HomeScreen = () => {
             </View>
           </View>
 
+          {/* investment mature message */}
+          {hideMatureMessage && (
+            <View className="bg-yellow rounded-lg mt-4 p-4 w-full relative">
+              <TouchableOpacity className='absolute top-2 right-2' onPress={() => setHideMatureMessage(false)}>
+                  <AntDesign name="closecircle" size={20} color="#ffffff" />
+              </TouchableOpacity>
+              <View className="flex-row gap-1 items-center">
+                <View className='gap-1'>
+                  <Text className="font-rbold text-3xl text-green">Yaay!</Text>
+                  <Text className="font-rmedium text-sm">Your investment has matured.</Text>
+                  <TouchableOpacity className="bg-green px-3 py-2 rounded-md" onPress={() => router.push("/(drawer)/(routes)/Investments")}>
+                      <Text className="text-white text-center font-rmedium text-sm">Go to Investment</Text>
+                  </TouchableOpacity>
+                </View>
+                <View className='mx-auto'>
+                  <Image source={images.money}/>
+                </View>
+              </View>
+            </View>
+          )}
+
           <View className='mt-6 flex-row items-center justify-between gap-1'>
             <SelectDropdown
-              data={investmentType}
+              data={data.investmentType}
               onSelect={(selectedItem, index) => {
                 console.log(selectedItem, index);
               }}
@@ -158,7 +165,7 @@ const HomeScreen = () => {
             />
 
             <SelectDropdown
-              data={cycleType}
+              data={data.cycleType}
               onSelect={(selectedItem, index) => {
                 console.log(selectedItem, index);
               }}
@@ -234,15 +241,15 @@ const HomeScreen = () => {
             </View>
 
             <View className="flex-row items-center justify-between w-full mt-6 gap-1">
-              <CustomButton title="+  Top up" handlePress={() => router.push('/(drawer)/(tabs)/home')} containerStyles="w-[32%]" bgColor='bg-yellow' textStyles='text-green text-sm'/>
-              <CustomButton title="Investment Overview" handlePress={() => router.push('/(drawer)/(tabs)/transactions')} containerStyles="w-[63%]" bgColor='bg-white' textStyles='text-green text-sm'/>
+              <CustomButton title="+  Top up" handlePress={() => router.push('/(drawer)/(routes)/Investments')} containerStyles="w-[32%]" bgColor='bg-yellow' textStyles='text-green text-sm'/>
+              <CustomButton title="Investment Overview" handlePress={() => router.push('/(drawer)/(routes)/Investments')} containerStyles="w-[63%]" bgColor='bg-white' textStyles='text-green text-sm'/>
             </View>
           </View>
 
           <View className='mt-6'>
             <View className='flex-row gap-2 justify-between w-full'>
               <Text className="font-rbold text-lg">Recent Transactions</Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => router.push("/(drawer)/(tabs)/transactions")}>
                 <Text className="font-rbold text-lg text-green underline">See all</Text>
               </TouchableOpacity>
             </View>
@@ -263,8 +270,8 @@ const HomeScreen = () => {
 
               {transactions?.map((item: any, index: number) => (
               
-                  <Transactions item={item} index={index} isLast={index === transactions.length - 1} handlePress={() => router.push({
-                    pathname: "/(drawer)/(tabs)/transactions",
+                  <Transactions item={item} key={index} index={index} isLast={index === transactions.length - 1} handlePress={() => router.push({
+                    pathname: "/(drawer)/(routes)/TransactionReceipt",
                     params: { Recieptdata: JSON.stringify(item) },
                   })}/>
             

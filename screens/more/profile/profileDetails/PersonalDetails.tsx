@@ -1,7 +1,7 @@
 import { View, Text, ScrollView, KeyboardAvoidingView, Platform, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import React, { useState } from 'react'
 import FormField from '@/components/FormField'
-// import DatePicker from 'react-native-date-picker'
+import DatePicker from 'react-native-date-picker'
 import RNPickerSelect from 'react-native-picker-select';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { data, images } from '@/constants';
@@ -144,7 +144,7 @@ const PersonalDetails = () => {
                 </View>
             </ScrollView>
         </KeyboardAvoidingView>
-{/* 
+
         <DatePicker
             modal
             open={open}
@@ -158,7 +158,7 @@ const PersonalDetails = () => {
             onCancel={() => {
                 setOpen(false)
             }}
-        /> */}
+        />
     </View>
   )
 }

@@ -1,7 +1,8 @@
-import { View, Image } from 'react-native'
+import { View, Image, Platform } from 'react-native'
 import { Tabs, router } from 'expo-router'
 import { icons } from '../../../constants'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
 
 const TabIcon = ({icon, focused}: {icon: any; focused: boolean}) => {
   return (
@@ -12,7 +13,17 @@ const TabIcon = ({icon, focused}: {icon: any; focused: boolean}) => {
 }
 const TabsLayout = () => {
 
+  const navigation = useNavigation();
+
    const {top, bottom} = useSafeAreaInsets()
+
+   const bottomHeight = Platform.OS === 'ios' ? bottom : bottom + 10
+
+   const marginX = Platform.OS === 'ios' ? 10 : 12
+
+   const openDrawer = () => {
+      navigation.dispatch(DrawerActions.toggleDrawer());
+    };
 
   return (
     <>
@@ -26,10 +37,10 @@ const TabsLayout = () => {
           paddingBottom: 8,
           paddingTop: 8,
           position: 'absolute',
-          bottom: bottom,
+          bottom: bottomHeight,
           borderWidth: 1,
           borderColor: '#DDDDDD',
-          marginHorizontal: 10,
+          marginHorizontal: marginX,
           borderRadius: 6,
           elevation: 5,
           shadowColor: '#000',
@@ -53,7 +64,13 @@ const TabsLayout = () => {
             )}}/>
             <Tabs.Screen name="more/index" options={{title: 'More', headerShown: false, tabBarIcon: ({ focused }) => (
               <TabIcon icon={icons.more} focused={focused}/>
-            )}}/>
+            )}}
+            listeners={() => ({
+              tabPress: (e) => {
+                e.preventDefault()
+                openDrawer()
+              }
+            })}/>
         </Tabs>
     </>
   )
