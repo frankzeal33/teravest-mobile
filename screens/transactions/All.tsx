@@ -47,10 +47,10 @@ const All = () => {
 
 
     const renderTransactions = ({item, index}: {item: any, index: number}) => (
-        <Transactions item={item} index={index} isLast={index === transactions.length - 1} handlePress={() => router.push({
-            pathname: "/(drawer)/(routes)/TransactionReceipt",
-            params: { Recieptdata: JSON.stringify(item) },
-        })}/>
+      <Transactions item={item} index={index} isLast={index === transactions.length - 1} handlePress={() => router.push({
+          pathname: "/(drawer)/(routes)/TransactionReceipt",
+          params: { Recieptdata: JSON.stringify(item) },
+      })}/>
     )
 
   return (

@@ -2,13 +2,12 @@ import { View, Text, Pressable, StyleSheet, ScrollView, TouchableOpacity, Image,
 import React, { useCallback, useState } from 'react'
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
-import Entypo from '@expo/vector-icons/Entypo';
 import { router } from 'expo-router'
 import Octicons from '@expo/vector-icons/Octicons';
 import { DrawerActions, useFocusEffect, useNavigation } from '@react-navigation/native'
 import SelectDropdown from 'react-native-select-dropdown'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { AntDesign, Feather, FontAwesome, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign, Feather, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import displayCurrency from '@/utils/displayCurrency'
 import Ionicons from '@expo/vector-icons/Ionicons';

@@ -11,7 +11,9 @@ export const DateLabels = (date: any) => {
   const diffInDays = now.diff(inputDate, 'days');
 
   if (diffInMinutes < 1) return 'Just now';
-  if (inputDate.isSame(now, 'day')) return 'Today';
+  if (diffInMinutes < 60) return `${diffInMinutes} min${diffInMinutes === 1 ? '' : 's'} ago`;
+  if (diffInHours < 24) return `${diffInHours} hour${diffInHours === 1 ? '' : 's'} ago`;
+  // if (inputDate.isSame(now, 'day')) return 'Today';
   if (inputDate.isSame(now.clone().subtract(1, 'day'), 'day')) return 'Yesterday';
   if (diffInDays < 7) return `${diffInDays} day${diffInDays === 1 ? '' : 's'} ago`;
   if (diffInDays < 14) return 'Last week';

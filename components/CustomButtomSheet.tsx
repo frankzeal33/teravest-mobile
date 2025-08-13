@@ -4,12 +4,12 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { View } from 'react-native';
 
 interface Props {
-    title?: string;
-    snapPoints: any;
-    enablePenDown?: boolean;
-    onDismiss?: () => void;
-    children: ReactElement,
-    scrollable?: boolean;
+  title?: string;
+  snapPoints: any;
+  enablePenDown?: boolean;
+  onDismiss?: () => void;
+  children: ReactElement,
+  scrollable?: boolean;
 }
 
 type Ref = BottomSheetModal
